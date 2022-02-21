@@ -1,0 +1,11 @@
+delete from pedidos;
+delete from clientes;
+delete from empleados;
+delete from pedidosfecha;
+delete from productos;
+
+select *from pedidos;
+select *from clientes;
+select *from empleados;
+select *from pedidosfecha;
+select *from productos;

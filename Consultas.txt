@@ -1,0 +1,38 @@
+Productos:
+SELECT DISTINCT prod.ProductName, cat.CategoryName, sup.CompanyName
+FROM Products prod
+INNER JOIN Categories cat ON  cat.CategoryID = prod.CategoryID
+INNER JOIN Suppliers sup on sup.SupplierID = prod.SupplierID;
+
+Clientes:
+SELECT DISTINCT cust.CompanyName, cust.ContactName, cust.City, cust.Country
+FROM Customers cust;
+
+Empleados:
+SELECT DISTINCT emp.LastName, emp.FirstName, emp.ReportsTo, emp.Country
+FROM Employees emp
+WHERE ReportsTo IS NOT NULL;
+
+PedidosFecha:
+SELECT CONVERT(DATE,OrderDate) AS FECHA, 
+	CONVERT(int,DATEPART(year,OrderDate)) as ANIO,
+	CONVERT(varchar,DATEPART(MONTH,OrderDate)) as MES,
+	CONVERT(int,DATEPART(DAY,OrderDate)) as DIA
+FROM Orders;
+
+Pedido:
+SELECT empD.Emp_Id ,cliD.Cli_Id ,prodD.Prod_Id ,tiD.PF_id,(detoS.UnitPrice) AS Precio ,detoS.Quantity AS Cantidad ,(detoS.UnitPrice*detoS.Quantity) AS IngresoTotal
+FROM Northwind.dbo.Products prodS 
+INNER JOIN Northwind.dbo.Categories catS ON prodS.CategoryID=catS.CategoryID
+INNER JOIN Northwind.dbo.Suppliers provS ON prodS.SupplierID=provS.SupplierID
+INNER JOIN Northwind.dbo.[Order Details] detoS ON prodS.ProductID=detoS.ProductID
+INNER JOIN Northwind.dbo.Orders ordS ON ordS.OrderID=detoS.OrderID
+INNER JOIN Northwind.dbo.Customers cliS ON cliS.CustomerID=ordS.CustomerID
+INNER JOIN Northwind.dbo.Employees empS ON empS.EmployeeID=ordS.EmployeeID
+INNER JOIN [NorthwindDataMartPedidos].dbo.Productos prodD ON prodD.Prod_Nombre = prodS.ProductName
+INNER JOIN [NorthwindDataMartPedidos].dbo.Clientes cliD ON cliD.Cli_NombreContacto = cliS.ContactName
+INNER JOIN [NorthwindDataMartPedidos].dbo.Empleados empD ON empD.Emp_Apellido = empS.LastName
+INNER JOIN [NorthwindDataMartPedidos].dbo.PedidosFecha tiD ON (tiD.fecha = CONVERT(DATE,ordS.OrderDate))
+
+
+
