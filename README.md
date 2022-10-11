@@ -7,7 +7,7 @@
 6. Se uso 5 Data Flow Task para cada Data Flow Task se uso un OLE DB Source, Data Conversion, OLE DB Destination respectivamente. 
 
 Pasos para ejecutarlo:
-1. Abrir Microsoft SQL Server Management Studio y restaurar la base de datos Northwind.bak y el script NorthwindDataMartPedidos.sql.
+1. Abrir Microsoft SQL Server Management Studio y ejecutar el script Northwind.sql y NorthwindDataMartPedidos.sql.
 2. Abrir el archivo IntegrationServices_NorthWind_EsquemaEstrella.sln y ejecutarlo.
 3. Finalmente comprobar con consultas que la base de datos NorthwindDataMartPedidos se ha llenado con sus respectivos datos.
 
